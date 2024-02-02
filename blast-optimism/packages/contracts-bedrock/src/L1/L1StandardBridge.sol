@@ -95,6 +95,8 @@ contract L1StandardBridge is StandardBridge, ISemver {
     ///                     Data supplied here will not be used to execute any code on L2 and is
     ///                     only emitted as extra data for the convenience of off-chain tooling.
     function depositETH(uint32 _minGasLimit, bytes calldata _extraData) external payable onlyEOA {
+        //@follow-up I can have msg.value == 0;
+        // @follow-up _minGasLimit lower bound check
         _initiateETHDeposit(msg.sender, msg.sender, _minGasLimit, _extraData);
     }
 

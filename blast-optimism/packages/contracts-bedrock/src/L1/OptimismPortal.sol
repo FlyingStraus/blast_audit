@@ -460,6 +460,7 @@ contract OptimismPortal is Initializable, ResourceMetering, ISemver {
         // Blast: Send the received ether to the yield manager to handle staking the funds.
         if (msg.value > 0) {
             (bool success) = SafeCall.send(address(yieldManager), SEND_DEFAULT_GAS_LIMIT, msg.value);
+            // @follow-up check gas on yieldManager
             require(success, "OptimismPortal: ETH transfer to YieldManager failed");
         }
 
